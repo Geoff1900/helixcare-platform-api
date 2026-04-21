@@ -21,4 +21,4 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build HelixCare.Api/HelixCare.Api.csproj --no-restore --configuration Release
