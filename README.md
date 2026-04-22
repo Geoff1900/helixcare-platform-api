@@ -67,7 +67,7 @@ Swagger will be available at:  https://localhost:xxxx/swagger
 ## Architecture Documentation
 
 See:
-- [Architecture Documentation](docs/adr/README.md)
+- [Architecture Documentation](docs/architecture/README.md)
 
 ---
 
