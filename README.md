@@ -67,14 +67,14 @@ Swagger will be available at:  https://localhost:xxxx/swagger
 ## Architecture Documentation
 
 See:
-- [Architecture Decision Records](docs/adr/README.md)
+- [Architecture Documentation](docs/adr/README.md)
 
 ---
 
 ## Architectural Decisions
 
 See:
-- [ADR Index](docs/adr/README.md)
+- [Architecture Decision Records](docs/adr/README.md)
 
 
 ---
