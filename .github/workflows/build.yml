@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 9.0.x
         
     - name: Restore dependencies
-      run: dotnet restore HelixCare.Api/HelixCare.Api.csproj
+      run: dotnet restore HelixCare.Api/HelixCare.Api.sln
 
     - name: Build
-      run: dotnet build HelixCare.Api/HelixCare.Api.csproj --no-restore --configuration Release
+      run: dotnet build HelixCare.Api/HelixCare.Api.sln --no-restore --configuration Release
