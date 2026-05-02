@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+var startupTime = DateTime.UtcNow;
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
@@ -29,19 +30,15 @@ app.MapGet("/", () =>
     return Results.Ok("HelixCare API is running");
 });
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/health", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    return Results.Ok(new
+    {
+        status = "Healthy",
+        service = "HelixCare API",
+        uptime = $"{(DateTime.UtcNow - startupTime).TotalSeconds:F2} seconds"
+    });
+});
 
 app.Run();
 
