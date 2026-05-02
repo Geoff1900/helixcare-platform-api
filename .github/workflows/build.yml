@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 9.0.x
         
     - name: Restore dependencies
-      run: dotnet restore src/HelixCare.Api/HelixCare.Api.sln
+      run: dotnet restore src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln
 
     - name: Build
-      run: dotnet build src/HelixCare.Api/HelixCare.Api.sln --no-restore --configuration Release
+      run: dotnet build src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln --no-restore --configuration Release
