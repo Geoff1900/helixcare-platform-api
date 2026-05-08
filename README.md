@@ -1,6 +1,6 @@
-# HelixCare Platform API
+# NortonSoftHealth Platform API
 
-HelixCare is a fictional healthcare platform designed to simulate
+NortonSoftHealth is a fictional healthcare platform designed to simulate
 a modern enterprise-scale healthcare ecosystem.
 
 This repository contains the foundational API service and CI pipeline
@@ -15,7 +15,7 @@ This project exists to:
 - Establish a repeatable CI/CD pipeline
 - Provide a baseline ASP.NET API service
 - Demonstrate enterprise engineering practices
-- Serve as the foundation for future HelixCare services
+- Serve as the foundation for future NortonSoftHealth services
 
 ---
 
@@ -32,7 +32,7 @@ This project exists to:
 
 ```mermaid
 graph TD
-    Root[helixcare-platform-api]
+    Root[NortonsoftHealth-platform-api]
 
     Root --> src[src/]
     Root --> test[test/]
@@ -40,7 +40,7 @@ graph TD
     Root --> deploy[deploy/]
     Root --> github[.github/]
 
-    src --> api[HelixCare.Api]
+    src --> api[NortonsoftHealth.Api]
 
     docs --> arch[architecture/]
     docs --> adr[adr/]
@@ -55,8 +55,8 @@ graph TD
 From repository root:
 
 ```bash
-dotnet restore src/HelixCare.Api/HelixCare.Api.sln
-dotnet run --project src/HelixCare.Api
+dotnet restore src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln
+dotnet run --project src/NortonsoftHealth.Api
 ```
 
 Swagger will be available at:  https://localhost:xxxx/swagger
