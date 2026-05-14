@@ -20,7 +20,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln
 
-    - name: Build API
+    - name: Build this API
       run: dotnet build src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln --no-restore --configuration Release
 
     - name: Publish
