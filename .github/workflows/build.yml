@@ -1,9 +1,9 @@
-name: HelixCare CI Build
+name: Build - NortonsoftHealth API
 
 on:
-  push:
-    branches: [ main, feature/* ]
-  
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:    
     runs-on: ubuntu-latest
@@ -20,5 +20,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln
 
-    - name: Build
+    - name: Build this API
       run: dotnet build src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln --no-restore --configuration Release
+
+    - name: Publish
+      run: dotnet publish src/NortonsoftHealth.Api/NortonsoftHealth.Api.csproj --no-restore --no-build --configuration Release -o ./publish
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: nortonsofthealth-api
+        path: ./publish  
