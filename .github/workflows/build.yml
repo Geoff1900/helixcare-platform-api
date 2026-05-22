@@ -4,12 +4,14 @@ on:
   pull_request:
     branches: [ main ]
 
+  push:
+    branches: [ main ]  
 jobs:
   build:    
     runs-on: ubuntu-latest
 
     steps:
-    - name: Chechout code
+    - name: Checkout code
       uses: actions/checkout@v4 
     
     - name: Setup .NET
@@ -31,3 +33,24 @@ jobs:
       with:
         name: nortonsofthealth-api
         path: ./publish  
+
+  deploy:
+    needs: build
+
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nortonsofthealth-api      
+        path: ./publish
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3 
+      with:
+        app-name: nortonsofthealth-api-dev
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ./publish   
