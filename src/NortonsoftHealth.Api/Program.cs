@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 var startupTime = DateTime.UtcNow;
 
+
+
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,11 +22,6 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
 app.MapGet("/", () =>
 {
     return Results.Ok("HelixCare API is running");
@@ -40,9 +37,24 @@ app.MapGet("/health", () =>
     });
 });
 
+var assemblyInfo = System.Reflection.Assembly.GetExecutingAssembly()
+    .GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+    .OfType<System.Reflection.AssemblyInformationalVersionAttribute>()
+    .FirstOrDefault()?.InformationalVersion ?? "1.0.0";
+
+// Split "1.0.0+build2026-05-22" into version and date
+var parts = assemblyInfo.Split("+build");
+var version = parts[0];
+var buildDate = parts.Length > 1 ? parts[1] : "unknown";
+
+
+app.MapGet("/api/version", () =>
+{
+    return Results.Ok(new VersionResponse(Version: version, BuildDate: buildDate));
+});
+
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+record VersionResponse(string Version = "1.0.0",
+                       string BuildDate = "22/05/2026",
+                       string Description = "NortonSoft API for health monitoring and data management");
