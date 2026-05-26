@@ -58,3 +58,4 @@ app.Run();
 record VersionResponse(string Version = "1.0.0",
                        string BuildDate = "22/05/2026",
                        string Description = "NortonSoft API for health monitoring and data management");
+public partial class Program { }
