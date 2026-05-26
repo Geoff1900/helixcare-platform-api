@@ -1,15 +1,15 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using Microsoft.AspNetCore.Mvc.Testing;
+//using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace NortonSoftHealth.Api.Tests;
 
-//For some reason, error thrown when reying on the using statement - using full qualified name instead.
-public class UnitTest1 : IClassFixture<Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program>>
+//For some reason, dotnet build throws an error when relying on the using statement in the 1st constructor, although not the second- using full qualified name instead.
+public class APIEndPointTests : IClassFixture<Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
 
-    public UnitTest1(WebApplicationFactory<Program> factory)
+    public APIEndPointTests(Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program> factory)
     {
         _client = factory.CreateClient();
     }
@@ -25,6 +25,7 @@ public class UnitTest1 : IClassFixture<Microsoft.AspNetCore.Mvc.Testing.WebAppli
 
         var content = await response.Content.ReadFromJsonAsync<VersionDto>();
         Assert.NotNull(content);
+        Assert.False(string.IsNullOrEmpty(content.Version));
         Assert.Matches(@"^\d+\.\d+\.\d+", content.Version);
     }
 
