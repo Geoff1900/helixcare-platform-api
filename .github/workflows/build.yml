@@ -26,7 +26,7 @@ jobs:
       run: dotnet build src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test src/NortonSoftHealth.Api/NortonSoftHealth.Api.sln --no-restore --no-build --configuration Release
+      run: dotnet test src/NortonsoftHealth.Api/NortonsoftHealth.Api.sln --no-restore --no-build --configuration Release
 
     - name: Publish
       run: dotnet publish src/NortonsoftHealth.Api/NortonsoftHealth.Api.csproj --no-restore --no-build --configuration Release -o ./publish
